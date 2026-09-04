@@ -6,9 +6,9 @@ MiniStock is a learning-focused MVP: add products, record incoming or outgoing s
 
 [![MiniStock checks](https://github.com/busrabuseucar/Ministock/actions/workflows/ci.yml/badge.svg)](https://github.com/busrabuseucar/Ministock/actions/workflows/ci.yml)
 
-[Live demo — owner-only access](https://ministock-buse.sleek-brush-8818.chatgpt.site) · [Türkçe öğrenme deneyi](docs/LEARNING.md)
+[Live demo](https://ministock-buse.sleek-brush-8818.chatgpt.site) · [Türkçe öğrenme deneyi](docs/LEARNING.md)
 
-The demo starts each browser with its own fictional workshop inventory. The current hosted demo is owner-only; it is not yet a publicly accessible CV link. The repository contains the full source for local use or your own deployment.
+The hosted demo is public and can be opened by anyone with the link. Each browser starts with its own fictional workshop inventory and a separate demo workspace. The repository contains the full source for local use or your own deployment.
 
 ## Stack
 
