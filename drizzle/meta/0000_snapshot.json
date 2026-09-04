@@ -1,0 +1,271 @@
+{
+  "version": "6",
+  "dialect": "sqlite",
+  "id": "e5ca9897-900f-47cc-8cbc-238f820deb37",
+  "prevId": "00000000-0000-0000-0000-000000000000",
+  "tables": {
+    "movements": {
+      "name": "movements",
+      "columns": {
+        "sequence": {
+          "name": "sequence",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "workspace_id": {
+          "name": "workspace_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "product_id": {
+          "name": "product_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "request_id": {
+          "name": "request_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "delta": {
+          "name": "delta",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "reason": {
+          "name": "reason",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "uq_movements_workspace_request": {
+          "name": "uq_movements_workspace_request",
+          "columns": [
+            "workspace_id",
+            "request_id"
+          ],
+          "isUnique": true
+        },
+        "idx_movements_workspace_product": {
+          "name": "idx_movements_workspace_product",
+          "columns": [
+            "workspace_id",
+            "product_id"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "movements_workspace_id_product_id_products_workspace_id_id_fk": {
+          "name": "movements_workspace_id_product_id_products_workspace_id_id_fk",
+          "tableFrom": "movements",
+          "tableTo": "products",
+          "columnsFrom": [
+            "workspace_id",
+            "product_id"
+          ],
+          "columnsTo": [
+            "workspace_id",
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {
+        "ck_movements_delta": {
+          "name": "ck_movements_delta",
+          "value": "\"movements\".\"delta\" != 0 AND abs(\"movements\".\"delta\") <= 999999 AND typeof(\"movements\".\"delta\") = 'integer'"
+        },
+        "ck_movements_reason": {
+          "name": "ck_movements_reason",
+          "value": "length(\"movements\".\"reason\") BETWEEN 2 AND 200"
+        }
+      }
+    },
+    "products": {
+      "name": "products",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "workspace_id": {
+          "name": "workspace_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "request_id": {
+          "name": "request_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "sku": {
+          "name": "sku",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "category": {
+          "name": "category",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "reorder_point": {
+          "name": "reorder_point",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "initial_quantity": {
+          "name": "initial_quantity",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "uq_products_workspace_sku": {
+          "name": "uq_products_workspace_sku",
+          "columns": [
+            "workspace_id",
+            "sku"
+          ],
+          "isUnique": true
+        },
+        "uq_products_workspace_request": {
+          "name": "uq_products_workspace_request",
+          "columns": [
+            "workspace_id",
+            "request_id"
+          ],
+          "isUnique": true
+        },
+        "uq_products_workspace_id": {
+          "name": "uq_products_workspace_id",
+          "columns": [
+            "workspace_id",
+            "id"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {
+        "products_workspace_id_workspaces_id_fk": {
+          "name": "products_workspace_id_workspaces_id_fk",
+          "tableFrom": "products",
+          "tableTo": "workspaces",
+          "columnsFrom": [
+            "workspace_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {
+        "ck_products_threshold": {
+          "name": "ck_products_threshold",
+          "value": "\"products\".\"reorder_point\" BETWEEN 0 AND 999999 AND typeof(\"products\".\"reorder_point\") = 'integer'"
+        },
+        "ck_products_initial": {
+          "name": "ck_products_initial",
+          "value": "\"products\".\"initial_quantity\" BETWEEN 0 AND 999999 AND typeof(\"products\".\"initial_quantity\") = 'integer'"
+        }
+      }
+    },
+    "workspaces": {
+      "name": "workspaces",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    }
+  },
+  "views": {},
+  "enums": {},
+  "_meta": {
+    "schemas": {},
+    "tables": {},
+    "columns": {}
+  },
+  "internal": {
+    "indexes": {}
+  }
+}
