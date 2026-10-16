@@ -1,5 +1,11 @@
 # MiniStock
 
+## Canlı demonun kapsamı
+
+[Demoyu aç](https://ministock-buse.sleek-brush-8818.chatgpt.site)
+
+Örnek ürünlerle başlayan ziyaretçiye özel alanda stok ve hareket işlemleri gerçek sunucu API’siyle kaydedilir. Veriler sunucuda saklanır; alan erişimi tarayıcı çerezine bağlıdır. Kurumsal ortak hesap ve hesap kurtarma sistemi değildir.
+
 **A small inventory system with a TypeScript API, an append-only stock ledger, and a React interface.**
 
 MiniStock is a learning-focused MVP: add products, record incoming or outgoing stock, see low-stock warnings, inspect the movement history and export a filtered inventory CSV. Every stock change is validated on the server and stored in SQLite-compatible Cloudflare D1. It is not a browser-only simulation.
