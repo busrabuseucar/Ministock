@@ -33,4 +33,4 @@ Düşük stok sınırında eşitliği incele. Mevcut sözleşme **stok ≤ sın�
 - İkinci tarayıcı neden ilk tarayıcının ürünlerini göremiyor?
 - API testi ile görsel tarayıcı testi arasındaki fark ne?
 
-AI desteğini saklama. Kendi yazdığın/değiştirdiğin bölümleri ve doğrulayabildiğin davranışları somut anlat.
+Kendi yazdığın/değiştirdiğin bölümleri ve doğrulayabildiğin davranışları somut anlat.
