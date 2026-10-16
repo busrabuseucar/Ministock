@@ -1,7 +1,7 @@
 # CV için taslak
 
 **MiniStock — Stok ve Hareket Takip Sistemi | 2026**  
-*Kişisel proje · Yapay zekâ destekli geliştirme*  
+*Kişisel proje*  
 **Teknolojiler:** TypeScript, React, REST API, Cloudflare Workers, D1/SQLite, GitHub Actions
 
 - Ürün oluşturma, stok giriş/çıkışı, düşük stok uyarısı ve hareket geçmişi sunan MVP.
