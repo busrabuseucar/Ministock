@@ -16,7 +16,9 @@
     "test:build": "node --test tests/rendered-html.test.mjs",
     "check": "tsc --noEmit",
     "source": "python3 scripts/package-source.py",
-    "db:local": "node scripts/prepare-local.mjs"
+    "db:local": "node scripts/prepare-local.mjs",
+    "test:browser": "playwright test",
+    "test:source": "python3 -m unittest discover -s tests -p 'test_*.py'"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",
@@ -46,6 +48,7 @@
   },
   "devDependencies": {
     "@cloudflare/vite-plugin": "1.37.1",
+    "@playwright/test": "1.58.2",
     "@tailwindcss/postcss": "4.2.1",
     "@types/node": "22.19.19",
     "@types/react": "19.2.14",

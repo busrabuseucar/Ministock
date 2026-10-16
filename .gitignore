@@ -44,3 +44,8 @@ next-env.d.ts
 # Generated source archive and TypeScript cache
 /public/ministock-source.zip
 *.tsbuildinfo
+
+# Browser and Python test output
+/playwright-report/
+/test-results/
+__pycache__/

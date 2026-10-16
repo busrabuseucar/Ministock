@@ -409,3 +409,17 @@ test("storage failure returns a recoverable response without leaking SQL", async
   assert.equal(response.status, 503);
   assert.doesNotMatch(await response.text(), /secret SQL/);
 });
+
+test('write media type must be JSON, not a prefix lookalike', async t => {
+ const s=await setup(); t.after(()=>s.sqlite.close());
+ for (const type of ['application/jsonp','application/json-malformed','text/plain'])
+  assert.equal((await s.call('/api/workspace',{},s.cookie,{'Content-Type':type})).status,415);
+ assert.equal((await s.call('/api/workspace',{},s.cookie,{'Content-Type':'application/json; charset=utf-8'})).status,200);
+});
+test('invalid bootstrap shapes do not allocate workspaces', async t=>{
+ const s=await setup();t.after(()=>s.sqlite.close());
+ for(const payload of [null,[],42,'text',{workspaceId:'foreign'}])
+  assert.equal((await s.call('/api/workspace',payload)).status,400);
+ assert.equal((await s.read()).products.length,8);
+ assert.equal(s.sqlite.prepare('SELECT COUNT(*) AS n FROM workspaces').get()!.n, 1);
+});

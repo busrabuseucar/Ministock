@@ -101,12 +101,15 @@ For bounded demo use, each workspace supports at most 100 products and 1,000 mov
 ```bash
 npm run check
 npm test
+npm run test:source
 npm run source
 npm run build
 npm run test:build
+npx playwright install chromium
+npm run test:browser
 ```
 
-API tests exercise the real request handler and checked-in schema against SQLite; they do not replace SQL outcomes with hard-coded mocks. They cover balances, negative-stock prevention, overlapping requests, retries, SKU uniqueness, transactions, invalid input, session isolation, cookie resumption, CSRF checks, payload limits and CSV escaping. Built-Worker tests check rendering and API dispatch. They are not a browser automation or production load test.
+API tests exercise the real request handler and checked-in schema against SQLite; they do not replace SQL outcomes with hard-coded mocks. They cover balances, negative-stock prevention, overlapping requests, retries, SKU uniqueness, transactions, invalid input, session isolation, cookie resumption, CSRF checks, payload limits and CSV escaping. Built-Worker tests check rendering and API dispatch. Playwright tests run Chromium against the local Worker and D1 database: stock withdrawal/restocking, rejected overselling, reload persistence, filtered CSV download, separate browser workspaces and product creation. No API responses are mocked. The source archive test checks that unrelated local files and symlinks stay out of the download. These checks are not production load tests.
 
 GitHub Actions is configured to run these commands on push and pull requests. A local pass does not establish a GitHub Actions pass; inspect the actual run after uploading the repository.
 
@@ -122,7 +125,7 @@ GitHub Actions is configured to run these commands on push and pull requests. A 
 
 The app requires a Worker and D1 binding. **GitHub Pages alone cannot run this backend.** The Sites manifest declares `d1: "DB"`; the host provisions the actual database and applies migrations before publishing. Local migrations are applied by the dedicated development script, never by production request handlers.
 
-`npm run source` creates `public/ministock-source.zip`. It omits credentials, database files, ignored build state and the Site identity. Run it before a build to include the download in the demo. Deploy the exact validated source using your host's normal workflow.
+`npm run source` creates `public/ministock-source.zip`. It packages an explicit set of source directories and file types, excludes database files, environment files, symlinks and build/test output, and replaces the hosting manifest with a sanitized binding declaration. Review source files before packaging: a secret embedded directly in an allowed source file is not automatically detected. Run it before a build to include the download in the demo. Deploy the exact validated source using your host's normal workflow.
 
 Technical references: [D1 prepared statements](https://developers.cloudflare.com/d1/worker-api/prepared-statements/), [D1 batch transactions](https://developers.cloudflare.com/d1/worker-api/d1-database/), [D1 foreign keys](https://developers.cloudflare.com/d1/sql-api/foreign-keys/). These are implementation references, not copied project demos.
 

@@ -39,10 +39,7 @@ function json(body: unknown, status = 200, extra: Record<string, string> = {}) {
 }
 function protectWrite(request: Request) {
   if (
-    !request.headers
-      .get("content-type")
-      ?.toLowerCase()
-      .startsWith("application/json")
+    request.headers.get("content-type")?.split(";", 1)[0].trim().toLowerCase() !== "application/json"
   )
     throw new ApiError(
       415,
@@ -107,7 +104,9 @@ export async function handleApi(
     const path = new URL(request.url).pathname;
     if (request.method === "POST") protectWrite(request);
     if (path === "/api/workspace" && request.method === "POST") {
-      await body(request);
+      const payload = await body(request);
+      if (!payload || typeof payload !== "object" || Array.isArray(payload) || Object.keys(payload).length !== 0)
+        throw new ApiError(400, "INVALID_WORKSPACE", "Çalışma alanı isteği boş bir JSON nesnesi olmalıdır.");
       const current = cookieToken(request);
       if (current && (await workspaceExists(db, await hash(current))))
         return json(await snapshot(db, await hash(current)));
