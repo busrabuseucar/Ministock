@@ -129,6 +129,6 @@ Technical references: [D1 prepared statements](https://developers.cloudflare.com
 
 ## Attribution and scope
 
-Prepared for Büşra Buse Uçar with AI-assisted implementation, on the supplied Sites/Vinext starter. The inventory API, business rules, interface composition and tests were authored for this project. Understand and extend the code before claiming personal mastery. This is an MVP, not an ERP or accounting application: no purchases/sales accounting, prices, barcode scanning, multiple warehouses, real-time sync, product deletion or movement editing.
+A personal inventory management project by Büşra Buse Uçar, built on the Sites/Vinext starter. The inventory API, business rules, interface composition and tests were authored for this project. This is an MVP, not an ERP or accounting application: no purchases/sales accounting, prices, barcode scanning, multiple warehouses, real-time sync, product deletion or movement editing.
 
 MIT licensed for original project code; dependencies and bundled UI components retain their own licenses.
