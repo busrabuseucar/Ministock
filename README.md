@@ -6,7 +6,7 @@ MiniStock is a learning-focused MVP: add products, record incoming or outgoing s
 
 [![MiniStock checks](https://github.com/busrabuseucar/Ministock/actions/workflows/ci.yml/badge.svg)](https://github.com/busrabuseucar/Ministock/actions/workflows/ci.yml)
 
-[Live demo](https://ministock-buse.sleek-brush-8818.chatgpt.site) · [Türkçe öğrenme deneyi](docs/LEARNING.md)
+[Live demo](https://ministock-buse.sleek-brush-8818.chatgpt.site)
 
 The hosted demo is public and can be opened by anyone with the link. Each browser starts with its own fictional workshop inventory and a separate demo workspace. The repository contains the full source for local use or your own deployment.
 
@@ -119,7 +119,6 @@ GitHub Actions is configured to run these commands on push and pull requests. A 
 - `db/schema.ts`, `drizzle/`: schema and migrations.
 - `worker/index.ts`: API dispatch and Vinext application handler.
 - `tests/`: behavior and built-Worker checks.
-- `docs/LEARNING.md`: a concrete hands-on learning exercise.
 
 The app requires a Worker and D1 binding. **GitHub Pages alone cannot run this backend.** The Sites manifest declares `d1: "DB"`; the host provisions the actual database and applies migrations before publishing. Local migrations are applied by the dedicated development script, never by production request handlers.
 
