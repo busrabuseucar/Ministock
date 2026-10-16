@@ -134,3 +134,7 @@ Technical references: [D1 prepared statements](https://developers.cloudflare.com
 A personal inventory management project by Büşra Buse Uçar, built on the Sites/Vinext starter. The inventory API, business rules, interface composition and tests were authored for this project. This is an MVP, not an ERP or accounting application: no purchases/sales accounting, prices, barcode scanning, multiple warehouses, real-time sync, product deletion or movement editing.
 
 MIT licensed for original project code; dependencies and bundled UI components retain their own licenses.
+
+## İşletim
+
+[İşletim ve sürüm doğrulama](docs/OPERATIONS.md) — kurulum, veri saklama, yayın, geri dönüş ve doğrulama kapsamı.
